@@ -1,0 +1,15 @@
+%h1= "みんなの記録 #{Date.today.year}年#{Date.today.month}月"
+
+%table.table
+  %tr
+    %th 日付
+    - User.order(:id).each do |user|
+      %th= user.name
+  - (Date.today.beginning_of_month..Date.today.end_of_month).each do |date|
+    %tr
+      %td= date.day
+      - User.order(:id).each do |user|
+        - if record = user.records.find_by(target_date: date)
+          %td= "#{record.to_goal}"
+        - else
+          %td

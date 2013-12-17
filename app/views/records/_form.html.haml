@@ -1,0 +1,7 @@
+= simple_form_for @record do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :target_date, label: '日付'
+    = f.input :weight, label: '体重'
+  .form-actions
+    = f.button :submit, '目標体重を記録する', class: 'btn btn-primary'

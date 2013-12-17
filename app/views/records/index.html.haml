@@ -1,0 +1,19 @@
+%h1 自分の記録
+
+%table.table
+  %tr
+    %th 日付
+    %th 体重
+    %th 目標まで
+    %th
+    %th
+
+  - @records.each do |record|
+    %tr
+      %td=l record.target_date
+      %td= record.weight
+      %td= "あと#{record.to_goal}kg"
+      %td= link_to '編集', edit_record_path(record)
+      %td= link_to '削除', record, method: :delete, data: { confirm: '削除します。まじでいいのか?' }
+
+= link_to '体重を記録する', new_record_path, class: 'btn btn-default'

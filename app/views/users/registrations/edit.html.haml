@@ -1,0 +1,10 @@
+%h2 アカウント設定
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :goal, required: true, label: '目標体重'
+  .form-actions
+    = f.button :submit, '目標体重を変更する', class: 'btn btn-primary'
+%h3 アカウント削除
+%p= link_to 'アカウントを削除する', registration_path(resource_name), data: {confirm: 'アカウントを削除します。この操作は取り消せません。よろしいですか？'}, method: :delete, class: 'btn btn-danger'
+%p アカウントを削除するとすべてのデータが削除され、２度と復旧することができません。

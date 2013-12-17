@@ -1,0 +1,29 @@
+%h1 #daitokaet
+%p Social daiet at DAITOKAI!!!
+%p
+  みんなでレコーディングダイエットして煽り煽られよう！
+  %br
+  ・名前を入れてください！
+  %br
+  ・日別の体重は目標体重からの相対値を入力してください！
+  %br
+  ・入力が滞っている人にはやさしく「進捗どうですか？」と聞いてあげよう！！
+  %br
+  ・なんかあったら@razonまで連絡ください。！
+  %br
+- if user_signed_in?
+  %h3 使い方
+  .how-to
+    %p 1.まずは目標体重を設定してください。
+    %p= link_to '目標体重を設定する', edit_user_registration_path, class: 'btn btn-default'
+  .how-to
+    %p 2.毎日、現在の体重を記録してください。
+    %p= link_to '体重を記録する', new_record_path, class: 'btn btn-default'
+  .how-to
+    %p 3.体重は他の人には公開されません。目標体重までの差分が表示されます。
+    %p= link_to 'みんなの記録をみる', social_path, class: 'btn btn-default'
+  .how-to
+    %p 4.ほしい機能はみんなで作りましょう。
+    %p= link_to 'Github', 'https://github.com/LuckOfWise/daitokaiet', class: 'btn btn-default'
+- else
+  = link_to 'Twitterでログイン', user_omniauth_authorize_path(:twitter), class: 'btn btn-default'

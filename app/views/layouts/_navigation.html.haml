@@ -1,0 +1,24 @@
+.navbar.navbar-default
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to '#daitokaiet', root_path, class: 'navbar-brand'
+
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li
+            = link_to '記録する', new_record_path
+          %li
+            = link_to 'みんなの記録', social_path
+          %li
+            = link_to '目標設定', edit_user_registration_path
+          %li
+            = link_to 'ログアウト', destroy_user_session_path, method: 'delete'
+        - else
+          %li
+            = link_to 'Twitterでログイン', user_omniauth_authorize_path(:twitter)

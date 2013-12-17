@@ -1,5 +1,13 @@
 Daitokaiet::Application.routes.draw do
-  match '/auth/:provider/callback', :to => 'sessions#callback'
+  get 'social' => 'social#index'
+  resources :records, except: [:show]
+
+  root 'home#index'
+
+  devise_for :users, skip: [:password], :controllers => {
+    :registrations => "users/registrations",
+    :omniauth_callbacks => "users/omniauth_callbacks"
+  }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

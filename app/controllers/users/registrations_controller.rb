@@ -1,0 +1,25 @@
+class Users::RegistrationsController < Devise::RegistrationsController
+
+  def new
+    redirect_to root_path
+  end
+
+  def create
+    redirect_to root_path
+  end
+
+  def build_resource(hash=nil)
+    hash[:uid] = User.create_unique_string
+    super
+  end
+
+  def update
+    current_user.update_attributes(users_params)
+    render :edit
+  end
+
+  private
+  def users_params
+    params.require(:user).permit(:goal)
+  end
+end
