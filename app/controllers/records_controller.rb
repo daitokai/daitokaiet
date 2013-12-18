@@ -20,7 +20,7 @@ class RecordsController < ApplicationController
   def create
     @record = current_user.records.build(record_params)
     if @record.save
-      redirect_to records_url, notice: 'Record was successfully created.'
+      redirect_to records_url, notice: '登録しました'
     else
       render action: 'new'
     end
@@ -29,7 +29,7 @@ class RecordsController < ApplicationController
   # PATCH/PUT /records/1
   def update
     if @record.update(record_params)
-      redirect_to records_url, notice: 'Record was successfully updated.'
+      redirect_to records_url, notice: '更新しました'
     else
       render action: 'edit'
     end
@@ -49,6 +49,6 @@ class RecordsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def record_params
-    params.require(:record).permit(:target_date, :weight)
+    params.require(:record).permit(:target_date, :weight, :comment)
   end
 end

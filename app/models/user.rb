@@ -14,9 +14,17 @@ class User < ActiveRecord::Base
       user = User.create(name: auth.info.nickname,
                          provider: auth.provider,
                          uid: auth.uid,
+                         token: auth.credentials.token,
+                         secret: auth.credentials.secret,
                          email: User.create_unique_email,
                          password: Devise.friendly_token[0, 20]
       )
+    else
+      user.update_attributes(name: auth.info.nickname,
+                             provider: auth.provider,
+                             uid: auth.uid,
+                             token: auth.credentials.token,
+                             secret: auth.credentials.secret)
     end
     user
   end
@@ -29,5 +37,14 @@ class User < ActiveRecord::Base
   # twitterではemailを取得できないので、適当に一意のemailを生成
   def self.create_unique_email
     User.create_unique_string + '@example.com'
+  end
+
+  def twitter_client
+    Twitter::REST::Client.new do |config|
+      config.consumer_key = ENV['TWITTER_KEY']
+      config.consumer_secret = ENV['TWITTER_SECRET']
+      config.oauth_token = self.token
+      config.oauth_token_secret = self.secret
+    end
   end
 end

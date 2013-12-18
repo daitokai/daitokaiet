@@ -53,6 +53,8 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'simple_form', git: 'git://github.com/zlx/simple_form', branch: 'feature/integration_bootstrap3'
 gem 'heroku_san', git: 'git://github.com/jphenow/heroku_san', branch: 'bug/wrong-ruby-version-loaded'
 
+gem 'twitter'
+
 group :production do
   gem 'unicorn'
   gem 'rails_12factor'
