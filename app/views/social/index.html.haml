@@ -1,11 +1,11 @@
-%h1= "みんなの記録 #{Date.today.year}年#{Date.today.month}月"
+%h1= "みんなの記録 #{@date.year}年#{@date.month}月"
 
 %table.table
   %tr
     %th 日付
     - User.order(:id).each do |user|
       %th= user.name
-  - (Date.today.beginning_of_month..Date.today.end_of_month).each do |date|
+  - (@date.beginning_of_month..@date.end_of_month).each do |date|
     %tr
       %td= date.day
       - User.order(:id).each do |user|
@@ -13,3 +13,5 @@
           %td= number_with_precision record.to_goal, precision: 1
         - else
           %td
+            - if date == Date.today
+              = link_to '煽る', "https://twitter.com/intent/tweet?text=@#{user.name} #{ERB::Util.url_encode('進捗どうですか？ #daitokaiet')} #{new_record_url}", target: '_blank'
