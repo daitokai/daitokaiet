@@ -6,7 +6,8 @@ Daitokaiet::Application.routes.draw do
 
   devise_for :users, skip: [:password], :controllers => {
     :registrations => "users/registrations",
-    :omniauth_callbacks => "users/omniauth_callbacks"
+    :omniauth_callbacks => "users/omniauth_callbacks",
+    :sessions => 'users/sessions'
   }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
