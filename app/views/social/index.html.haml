@@ -10,6 +10,6 @@
       %td= date.day
       - User.order(:id).each do |user|
         - if record = user.records.find_by(target_date: date)
-          %td= "#{record.to_goal}"
+          %td= number_with_precision record.to_goal, precision: 1
         - else
           %td
