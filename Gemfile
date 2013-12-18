@@ -54,6 +54,8 @@ gem 'simple_form', git: 'git://github.com/zlx/simple_form', branch: 'feature/int
 gem 'heroku_san', git: 'git://github.com/jphenow/heroku_san', branch: 'bug/wrong-ruby-version-loaded'
 
 gem 'twitter'
+gem 'newrelic_rpm'
+gem 'bugsnag'
 
 group :production do
   gem 'unicorn'
