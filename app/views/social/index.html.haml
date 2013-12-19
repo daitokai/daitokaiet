@@ -1,7 +1,7 @@
 %h1 みんなの記録
 %ul.nav.nav-tabs
   %li.active= link_to 'Table', '#table', data: {toggle: 'tab'}
-  %li= link_to 'Chart', '#chart', data: {toggle: 'tab'}
+  %li= link_to 'Chart', '#gvChartDiv1', data: {toggle: 'tab'}
 
 .tab-content
   #table.tab-pane.active
@@ -27,7 +27,7 @@
                 - if date == Date.today
                   = link_to '煽る', "https://twitter.com/intent/tweet?text=@#{user.name} #{ERB::Util.url_encode('進捗どうですか？ #daitokaiet')} #{new_record_url}", target: '_blank'
 
-  #chart.tab-pane
+  #chart
     %table#chart-table
       %thead
         %tr

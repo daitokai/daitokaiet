@@ -21,3 +21,4 @@ $ ->
 
       width: 900
       height: 600
+  $('#gvChartDiv1').addClass('tab-pane')
