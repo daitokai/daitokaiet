@@ -6,7 +6,7 @@
     - User.social_visible.order(:id).each do |user|
       %th
         - if user.image_url.blank?
-          = image_tag '/assets/ic_menu_android.png', alt: user.name, class: 'user_icon'
+          = image_tag 'ic_menu_android.png', alt: user.name, class: 'user_icon'
         - else
           = image_tag user.image_url, alt: user.name, class: 'user_icon'
         %p.arrow_box= user.name
