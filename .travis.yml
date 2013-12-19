@@ -1,3 +1,10 @@
 language: ruby
 rvm:
-  - 2.0.0
+- 2.0.0
+deploy:
+  provider: heroku
+  api_key:
+    secure: V3PQhZ2DVXroy/J9cAky6ZobyAH0eA6qrBd1Vz+MISZG2COIUGyCnKyK8ymzc5tfgNzDcM6xpeyd/CPNUJOlL6fo4eFxhIXugMdwrX2MRk/Q665Y0p8NBsAJtowR9YklN8Uei+ABysRIMLX6JtKb2xsKivrJiF5cnUIssyFD7ns=
+  app:
+    master: daitokaiet
+    staging: daitokaiet-staging
