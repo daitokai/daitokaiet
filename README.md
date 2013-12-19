@@ -6,10 +6,8 @@
 
 みんなでレコーディングダイエットして煽り煽られよう！
 
-* 名前を入れてください！
-* 日別の体重は目標体重からの相対値を入力してください！
 * 入力が滞っている人にはやさしく「進捗どうですか？」と聞いてあげよう！！
-* なんかあったら[@LuckOfWise](https://twitter.com/LuckOfWise) or [@eielh](https://twitter.com/eielh)まで連絡ください。！
+* なんかあったら[@LuckOfWise](https://twitter.com/LuckOfWise) or [@eielh](https://twitter.com/eielh)まで連絡ください！
 
 # 使い方
 
