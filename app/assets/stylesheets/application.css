@@ -8,8 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require_tree .
+ *= require_self
  */
  /* home */
 .home { background:#f0f0f0; }
@@ -23,6 +23,10 @@
 .home #how3 { background:#3498db; }
 .home #how4 { background:#ecf0f1; }
 .home #how4 img { width:30%; }
+
+.home p {
+    line-height: 18px;
+}
 
 @media (max-width: 767px){
 	.home #secondary { padding:0 !important; }
