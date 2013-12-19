@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/LuckOfWise/daitokaiet.png)](https://travis-ci.org/LuckOfWise/daitokaiet)
-[![Code Climate](https://codeclimate.com/github/LuckOfWise/daitokaiet.png)](https://codeclimate.com/github/LuckOfWise/daitokaiet)
+[![Build Status](https://travis-ci.org/daitokai/daitokaiet.png)](https://travis-ci.org/daitokai/daitokaiet)
+[![Code Climate](https://codeclimate.com/github/daitokai/daitokaiet.png)](https://codeclimate.com/github/daitokai/daitokaiet)
 
 # #daitokaiet
 
