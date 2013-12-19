@@ -61,3 +61,5 @@ group :production do
   gem 'unicorn'
   gem 'rails_12factor'
 end
+
+gem 'pry-rails', :group => :development
