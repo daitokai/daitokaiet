@@ -3,12 +3,12 @@
 %table.table
   %tr
     %th 日付
-    - User.order(:id).each do |user|
+    - User.joins(:records).order(:id).each do |user|
       %th= user.name
   - (@date.beginning_of_month..@date.end_of_month).each do |date|
     %tr
       %td= date.day
-      - User.order(:id).each do |user|
+      - User.joins(:records).order(:id).each do |user|
         - if record = user.records.find_by(target_date: date)
           %td= number_with_precision record.to_goal, precision: 1
         - else
