@@ -28,7 +28,9 @@
         %p 体重非公開。目標との差分表示です。
         %p= link_to 'みんなの記録をみる', social_path, class: 'btn btn-default'
       #how4.how-to
-        %p.nums 4
+        %p
+          = link_to 'https://github.com/daitokai/daitokaiet', target: '_blank' do
+            =image_tag 'github.png'
         %p ほしい機能はみんなで作りましょう。
         %p= link_to 'Github', 'https://github.com/daitokai/daitokaiet', class: 'btn btn-default'
   - else

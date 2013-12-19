@@ -1,0 +1,86 @@
+/* home */
+.home
+  background: #f0f0f0
+  p
+    line-height: 18px
+  #title
+    background: #333
+    color: #fff
+    text-align: center
+    padding: 10% 0
+
+  .how-to
+    border: 1px solid #fff
+    float: left
+    text-align: center
+    padding: 6% 0
+
+    &:hover
+      opacity: 0.7
+
+    a:hover
+      text-decoration: none
+      background: none
+
+    .nums
+      font-size: 6.0em
+      padding: 10% 0 13%
+
+  #how1
+    background: #1abc9c
+
+  #how2
+    background: #2ecc71
+
+  #how3
+    background: #3498db
+
+  #how4
+    background: #ecf0f1
+
+    img
+      width: 30%
+
+@media (max-width: 767px)
+  .home
+    #secondary
+      padding: 0 !important
+
+    .how-to
+      width: 50%
+      margin: 0
+      height: 250px
+      padding-top: 4%
+
+    #how4 img
+      width: 28% !important
+
+@media (min-width: 768px)
+  .home
+    #secondary
+      padding: 0 !important
+
+    .how-to
+      width: 50%
+      margin: 0
+      height: 250px
+      padding-top: 4%
+
+    #how4 img
+      width: 28% !important
+
+@media (min-width: 992px)
+  .home
+    .how-to
+      width: 48%
+      height: 214px
+      padding: 6% 0
+      margin-left: 1%
+      margin-bottom: 1%
+
+    #how4 img
+      width: 32% !important
+
+@media (min-width: 1200px)
+  .home #how4 img
+    margin-top: -10px
