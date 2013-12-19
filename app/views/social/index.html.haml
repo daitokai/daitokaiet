@@ -1,23 +1,45 @@
 %h1 みんなの記録
+%ul.nav.nav-tabs
+  %li.active= link_to 'Table', '#table', data: {toggle: 'tab'}
+  %li= link_to 'Chart', '#chart', data: {toggle: 'tab'}
 
-%table.table.social
-  %tr
-    %th
-    - User.social_visible.order(:id).each do |user|
-      %th
-        = link_to "social/#{user.name}" do
-          - if user.image_url.blank?
-            = image_tag 'ic_menu_android.png', alt: user.name, class: 'user_icon'
-          - else
-            = image_tag user.image_url, alt: user.name, class: 'user_icon'
-          %p.arrow_box= user.name
-  - (Date.today - 30.days..Date.today).reverse_each do |date|
-    %tr
-      %td= l date, format: :short
-      - User.social_visible.order(:id).each do |user|
-        - if record = user.records.find_by(target_date: date)
-          %td= number_with_precision record.to_goal, precision: 1
-        - else
-          %td
-            - if date == Date.today
-              = link_to '煽る', "https://twitter.com/intent/tweet?text=@#{user.name} #{ERB::Util.url_encode('進捗どうですか？ #daitokaiet')} #{new_record_url}", target: '_blank'
+.tab-content
+  #table.tab-pane.active
+    %table.table.social
+      %tr
+        %th
+        - User.social_visible.order(:id).each do |user|
+          %th
+            = link_to "social/#{user.name}" do
+              - if user.image_url.blank?
+                = image_tag 'ic_menu_android.png', alt: user.name, class: 'user_icon'
+              - else
+                = image_tag user.image_url, alt: user.name, class: 'user_icon'
+              %p.arrow_box= user.name
+      - (Date.today - 30.days..Date.today).reverse_each do |date|
+        %tr
+          %td= l date, format: :short
+          - User.social_visible.order(:id).each do |user|
+            - if record = user.records.find_by(target_date: date)
+              %td= number_with_precision record.to_goal, precision: 1
+            - else
+              %td
+                - if date == Date.today
+                  = link_to '煽る', "https://twitter.com/intent/tweet?text=@#{user.name} #{ERB::Util.url_encode('進捗どうですか？ #daitokaiet')} #{new_record_url}", target: '_blank'
+
+  #chart.tab-pane
+    %table#chart-table
+      %thead
+        %tr
+          %th
+          - (Date.today - 30.days..Date.today).each do |date|
+            %th= l date, format: :short
+      %tbody
+        %tr
+          - User.social_visible.order(:id).each do |user|
+            %th= user.name
+            - (Date.today - 30.days..Date.today).each do |date|
+              - if record = user.records.find_by(target_date: date)
+                %td= number_with_precision record.to_goal, precision: 1
+              - else
+                %td
