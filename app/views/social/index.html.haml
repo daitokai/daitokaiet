@@ -5,7 +5,10 @@
     %th 日付
     - User.social_visible.order(:id).each do |user|
       %th
-        = image_tag user.image_url, alt: user.name, class: 'user_icon'
+        - if user.image_url.blank?
+          = image_tag '/assets/ic_menu_android.png', alt: user.name, class: 'user_icon'
+        - else
+          = image_tag user.image_url, alt: user.name, class: 'user_icon'
         %p.arrow_box= user.name
   - (Date.today - 30.days..Date.today).reverse_each do |date|
     %tr
