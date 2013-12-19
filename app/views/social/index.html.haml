@@ -2,7 +2,7 @@
 
 %table.table.social
   %tr
-    %th 日付
+    %th
     - User.social_visible.order(:id).each do |user|
       %th
         - if user.image_url.blank?
