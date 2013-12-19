@@ -1,13 +1,13 @@
-%h1= "みんなの記録 #{@date.year}年#{@date.month}月"
+%h1 みんなの記録
 
 %table.table
   %tr
     %th 日付
     - User.social_visible.order(:id).each do |user|
       %th= user.name
-  - (@date.beginning_of_month..@date.end_of_month).each do |date|
+  - (Date.today - 30.days..Date.today).reverse_each do |date|
     %tr
-      %td= date.day
+      %td= l date, format: :short
       - User.social_visible.order(:id).each do |user|
         - if record = user.records.find_by(target_date: date)
           %td= number_with_precision record.to_goal, precision: 1
