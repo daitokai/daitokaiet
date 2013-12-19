@@ -1,5 +1,6 @@
 Daitokaiet::Application.routes.draw do
   get 'social' => 'social#index'
+  get 'social/:name' => 'social#show'
   resources :records, except: [:show]
 
   root 'home#index'

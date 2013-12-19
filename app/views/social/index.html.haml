@@ -5,11 +5,12 @@
     %th
     - User.social_visible.order(:id).each do |user|
       %th
-        - if user.image_url.blank?
-          = image_tag 'ic_menu_android.png', alt: user.name, class: 'user_icon'
-        - else
-          = image_tag user.image_url, alt: user.name, class: 'user_icon'
-        %p.arrow_box= user.name
+        = link_to "social/#{user.name}" do
+          - if user.image_url.blank?
+            = image_tag 'ic_menu_android.png', alt: user.name, class: 'user_icon'
+          - else
+            = image_tag user.image_url, alt: user.name, class: 'user_icon'
+          %p.arrow_box= user.name
   - (Date.today - 30.days..Date.today).reverse_each do |date|
     %tr
       %td= l date, format: :short
