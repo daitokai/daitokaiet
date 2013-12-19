@@ -42,11 +42,11 @@
               %td= number_with_precision record.to_goal, precision: 1
             - else
               %td
-        %tr
           - User.social_visible.where.not(id: current_user.id).sample(29).each do |user|
-            %th= user.name
-            - (Date.today - 30.days..Date.today).each do |date|
-              - if record = user.records.find_by(target_date: date)
-                %td= number_with_precision record.to_goal, precision: 1
-              - else
-                %td
+            %tr
+              %th= user.name
+              - (Date.today - 30.days..Date.today).each do |date|
+                - if record = user.records.find_by(target_date: date)
+                  %td= number_with_precision record.to_goal, precision: 1
+                - else
+                  %td
