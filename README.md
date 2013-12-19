@@ -1,5 +1,8 @@
 [![Build Status](https://travis-ci.org/daitokai/daitokaiet.png)](https://travis-ci.org/daitokai/daitokaiet)
 [![Code Climate](https://codeclimate.com/github/daitokai/daitokaiet.png)](https://codeclimate.com/github/daitokai/daitokaiet)
+[![Coverage Status](https://coveralls.io/repos/daitokai/daitokaiet/badge.png)](https://coveralls.io/r/daitokai/daitokaiet)
+[![Dependency Status](https://gemnasium.com/daitokai/daitokaiet.png)](https://gemnasium.com/daitokai/daitokaiet)
+
 
 # #daitokaiet
 

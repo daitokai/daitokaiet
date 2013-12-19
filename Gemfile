@@ -63,3 +63,4 @@ group :production do
 end
 
 gem 'pry-rails', :group => :development
+gem 'coveralls', require: false
