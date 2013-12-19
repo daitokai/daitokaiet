@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :records, dependent: :destroy
   validates :goal, numericality: true
 
-  scope :social_visible, -> { joins(:records) }
+  scope :social_visible, -> { joins(:records).uniq }
 
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
