@@ -2,6 +2,6 @@
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = f.error_notification
   .form-inputs
-    = f.input :goal, required: true, label: '目標体重'
+    = f.input :goal, required: true, label: '目標体重', input_html: {step:'0.1'}
   .form-actions
     = f.button :submit, '目標体重を変更する', class: 'btn btn-primary'

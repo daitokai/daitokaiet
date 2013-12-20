@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
   has_many :records, dependent: :destroy
   has_many :follows, dependent: :destroy
 
-  validates :goal, numericality: true
+  validates :goal, numericality: true, unless: :new_record?
+
+  after_update :tweet_change_goal, if: Proc.new { |user| user.step > 0 }
 
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
@@ -21,7 +23,8 @@ class User < ActiveRecord::Base
                          secret: auth.credentials.secret,
                          email: User.create_unique_email,
                          password: Devise.friendly_token[0, 20],
-                         image_url: data['image']
+                         image_url: data['image'],
+                         goal: nil
       )
     else
       user.update_attributes(name: auth.info.nickname,
@@ -49,6 +52,25 @@ class User < ActiveRecord::Base
 
   def unfollow(target_user)
     self.follows.find_by(target_user_id: target_user.id).destroy
+  end
+
+  def tweet_change_goal
+    if goal_changed?
+      if goal_was > goal
+        twitter_client.update("目標体重をさらに#{goal_was - goal}kg減らしました！！ #daitokaiet")
+      else
+        twitter_client.update("目標体重を#{goal - goal_was}kg増やしちゃいました。。。 #daitokaiet")
+      end
+    end
+  end
+
+  def update_first_step
+    if self.step == 0
+      self.step = 1
+      self.save!
+      twitter_client.update('#daitokaiet をはじめました！')
+      true
+    end
   end
 
   # 通常サインアップ時のuid用、Twitter OAuth認証時のemail用にuuidな文字列を生成

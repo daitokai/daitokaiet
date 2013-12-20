@@ -15,7 +15,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update
     current_user.update_attributes(users_params)
-    render :edit
+    if current_user.update_first_step
+      redirect_to new_record_url, notice: '次に今日の体重を記録しましょう！！'
+    else
+      render :edit
+    end
   end
 
   private

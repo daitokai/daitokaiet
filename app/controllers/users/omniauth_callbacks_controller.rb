@@ -11,4 +11,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_registration_url
     end
   end
+
+  def after_sign_in_path_for(user)
+    if user.step == 0
+      flash[:notice] = '#daitokaietへようこそ！最初に目標体重を設定してください。'
+      edit_user_registration_path
+    else
+      super
+    end
+  end
+
 end
