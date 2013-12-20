@@ -8,33 +8,30 @@ class User < ActiveRecord::Base
   has_many :records, dependent: :destroy
   has_many :follows, dependent: :destroy
 
-  validates :goal, numericality: true, unless: :new_record?
+  validates :goal, numericality: true, unless: Proc.new { |user| user.step == 0 }
 
   after_update :tweet_change_goal, if: Proc.new { |user| user.step > 0 }
 
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
-    user = User.where(provider: auth.provider, uid: auth.uid).first
+    user = User
+      .where(provider: auth.provider, uid: auth.uid)
+      .first_or_initialize
+
     data = auth['info']
-    unless user
-      user = User.create(name: auth.info.nickname,
-                         provider: auth.provider,
-                         uid: auth.uid,
-                         token: auth.credentials.token,
-                         secret: auth.credentials.secret,
-                         email: User.create_unique_email,
-                         password: Devise.friendly_token[0, 20],
-                         image_url: data['image'],
-                         goal: nil
-      )
-    else
-      user.update_attributes(name: auth.info.nickname,
-                             provider: auth.provider,
-                             uid: auth.uid,
-                             token: auth.credentials.token,
-                             secret: auth.credentials.secret,
-                             image_url: data['image']
+    attributes = {
+      name: auth.info.nickname,
+      token:  auth.credentials.token,
+      secret: auth.credentials.secret,
+      image_url: data['image'],
+    }
+    if user.new_record?
+      attributes.merge!(email: User.create_unique_email,
+                        password: Devise.friendly_token[0, 20],
+                        goal: nil,
+
       )
     end
+    user.update! attributes
     user
   end
 
