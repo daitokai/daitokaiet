@@ -12,8 +12,5 @@
       %li
         = link_to "social/#{user.name}" do
           %h1
-            - if user.image_url.blank?
-              = image_tag 'ic_menu_android.png', alt: user.name, class: 'user_icon'
-            - else
-              = image_tag user.image_url, alt: user.name
+            = user_icon user
             = user.name
