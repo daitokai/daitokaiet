@@ -10,6 +10,17 @@ class Record < ActiveRecord::Base
     self.weight.to_f - self.user.goal.to_f
   end
 
+  def delta
+    if prev = self.previous
+      self.weight.to_f - prev.weight.to_f
+    end
+  end
+
+  def previous
+    date = self.target_date
+    Record.where(user_id: user_id).where{ target_date < date }.first
+  end
+
   def update_twitter
     self.user.twitter_client.update("目標体重まであと#{self.to_goal.round(2)}kg #daitokaiet #{self.comment} |#{target_date.to_s}")
   rescue
