@@ -31,3 +31,6 @@
         %p= link_to 'Github', 'https://github.com/daitokai/daitokaiet', class: 'btn btn-default'
   - else
     = link_to 'Twitterでログイン', user_omniauth_authorize_path(:twitter), class: 'btn btn-default'
+.row
+  #twitter_widget.col-xs-12.col-sm-12.col-md-12.col-lg-12
+    = render 'twitter_widget', height: 400, width: 1200
