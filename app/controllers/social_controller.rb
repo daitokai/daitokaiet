@@ -15,12 +15,10 @@ class SocialController < ApplicationController
 
   def follow
     current_user.follow(@user)
-    redirect_to show_social_url(name: @user.name), notice: 'フォローしました。'
   end
 
   def unfollow
     current_user.unfollow(@user)
-    redirect_to show_social_url(name: @user.name), notice: 'フォローを外しました。'
   end
 
   private
