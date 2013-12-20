@@ -6,14 +6,13 @@ class User < ActiveRecord::Base
          :omniauthable
 
   has_many :records, dependent: :destroy
-  validates :goal, numericality: true
+  has_many :follows, dependent: :destroy
 
-  scope :social_visible, -> { joins(:records).uniq }
+  validates :goal, numericality: true
 
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
     data = auth['info']
-    logger.debug(data)
     unless user
       user = User.create(name: auth.info.nickname,
                          provider: auth.provider,
@@ -34,6 +33,22 @@ class User < ActiveRecord::Base
       )
     end
     user
+  end
+
+  def follow_users
+    self.follows.map(&:target_user)
+  end
+
+  def follow?(target_user)
+    !self.follows.where(target_user_id: target_user.id).blank?
+  end
+
+  def follow(target_user)
+    self.follows.create(target_user_id: target_user.id)
+  end
+
+  def unfollow(target_user)
+    self.follows.find_by(target_user_id: target_user.id).destroy
   end
 
   # 通常サインアップ時のuid用、Twitter OAuth認証時のemail用にuuidな文字列を生成

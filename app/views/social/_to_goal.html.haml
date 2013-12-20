@@ -1,0 +1,5 @@
+- if record = user.records.find_by(target_date: date)
+  = number_with_precision record.to_goal, precision: 1
+- else
+  - if date == Date.today
+    = link_to '煽る', "https://twitter.com/intent/tweet?text=@#{user.name} #{ERB::Util.url_encode('進捗どうですか？ #daitokaiet')} #{new_record_url}", target: '_blank'
