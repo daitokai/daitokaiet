@@ -1,8 +1,5 @@
 %h1
-  - if @user.image_url.blank?
-    = image_tag 'ic_menu_android.png', alt: @user.name, class: 'user_icon'
-  - else
-    = image_tag @user.image_url, alt: @user.name
+  = user_icon @user
   = @user.name
   - unless current_user.id == @user.id
     - if current_user.follow?(@user)
