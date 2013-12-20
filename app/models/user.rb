@@ -62,13 +62,23 @@ class User < ActiveRecord::Base
         twitter_client.update("目標体重を#{goal - goal_was}kg増やしちゃいました。。。 #daitokaiet")
       end
     end
+  rescue
+    logger.info('tweet失敗 at tweet_change_goal')
   end
 
-  def update_first_step
+  def update_first_step!
     if self.step == 0
       self.step = 1
       self.save!
       twitter_client.update('#daitokaiet をはじめました！')
+      true
+    end
+  end
+
+  def update_second_step!
+    if self.step == 1
+      self.step = 2
+      self.save!
       true
     end
   end

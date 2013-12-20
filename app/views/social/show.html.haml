@@ -1,11 +1,7 @@
 %h1
   = user_icon @user
   = @user.name
-  - unless current_user.id == @user.id
-    - if current_user.follow?(@user)
-      = link_to 'フォローを外す', unfollow_path(id: @user.id), class: 'btn btn-danger', method: :post
-    - else
-      = link_to 'フォローする', follow_path(id: @user.id), class: 'btn btn-primary', method: :post
+  = render 'follow_unfollow', user: @user
 
 .row
   .col-md-8
