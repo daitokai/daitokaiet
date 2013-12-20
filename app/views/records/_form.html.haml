@@ -2,7 +2,7 @@
   = f.error_notification
   .form-inputs
     = f.input :target_date, label: '日付', end_year: Date.today.year
-    = f.input :weight, label: '体重'
+    = f.input :weight, label: '体重', input_html: {step:'0.1'}
     = f.input :comment, label: 'コメント(つぶやきます)'
   .form-actions
     = link_to '戻る', records_path, class: 'btn btn-default'
