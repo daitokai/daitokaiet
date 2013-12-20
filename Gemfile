@@ -63,5 +63,11 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'pry-rails', :group => :development
+gem 'pry-rails', group: [:development, :test]
 gem 'coveralls', require: false
+
+group :test do
+  gem 'capybara'
+  gem 'launchy'
+  gem 'poltergeist'
+end
