@@ -9,6 +9,8 @@
       = link_to '#daitokaiet', root_path, class: 'navbar-brand'
 
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      = search_form_for User.all.search(params[:q]), url: search_path, html: { class: 'navbar-form navbar-left', role: 'search' }, builder: SimpleForm::FormBuilder do |f|
+        = f.input :name_cont, label: false, input_html: {class: 'form-control', placeholder: '友達を探す'}
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li

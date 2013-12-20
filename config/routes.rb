@@ -1,6 +1,7 @@
 Daitokaiet::Application.routes.draw do
   get 'social' => 'social#index'
   get 'social/:name' => 'social#show', as: 'show_social'
+  get 'search' => 'social#search', as: 'search'
   post 'social/:id/follow' => 'social#follow', as: 'follow'
   post 'social/:id/unfollow' => 'social#unfollow', as: 'unfollow'
   resources :records, except: [:show]

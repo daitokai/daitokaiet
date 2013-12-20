@@ -1,0 +1,19 @@
+- if @users.blank?
+  %h1 友達がみつかりませんでした!!!!
+  %p
+    まだ#daitokaiet初めてないのでは？？
+    %br
+    是非お誘い合わせの上煽り合ってください！！
+  %p
+    = link_to '友達を#daitokaietに誘う', "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode('一緒にソーシャルレコーディングダイエットサービス #daitokaiet やりませんか？')} #{root_url}", class: 'btn btn-primary',target: '_blank'
+- else
+  %ul.result
+    - @users.each do |user|
+      %li
+        = link_to "social/#{user.name}" do
+          %h1
+            - if user.image_url.blank?
+              = image_tag 'ic_menu_android.png', alt: user.name, class: 'user_icon'
+            - else
+              = image_tag user.image_url, alt: user.name
+            = user.name

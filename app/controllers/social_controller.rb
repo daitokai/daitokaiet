@@ -9,6 +9,10 @@ class SocialController < ApplicationController
     @user = User.find_by(name: params[:name])
   end
 
+  def search
+    @users = User.search(params[:q]).result
+  end
+
   def follow
     current_user.follow(@user)
     redirect_to show_social_url(name: @user.name), notice: 'フォローしました。'

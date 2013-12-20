@@ -56,6 +56,7 @@ gem 'heroku_san', git: 'git://github.com/jphenow/heroku_san', branch: 'bug/wrong
 gem 'twitter'
 gem 'newrelic_rpm'
 gem 'bugsnag'
+gem 'ransack'
 
 group :production do
   gem 'unicorn'
