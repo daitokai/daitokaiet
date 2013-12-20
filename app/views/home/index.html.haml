@@ -9,28 +9,29 @@
       %br
       ・なんかあったら@LuckOfWise or @eielhまで連絡ください。！
       %br
-  - if user_signed_in?
-    #secondary.col-xs-12.col-sm-12.col-md-6.col-lg-7
-      #how1.how-to
-        %p.nums 1
-        %p まずは目標体重を設定してください。
-        %p= link_to '目標体重を設定する', edit_user_registration_path, class: 'btn btn-default'
-      #how2.how-to
-        %p.nums 2
-        %p 毎日、現在の体重を記録してください。
-        %p= link_to '体重を記録する', new_record_path, class: 'btn btn-default'
-      #how3.how-to
-        %p.nums 3
-        %p 体重非公開。目標との差分表示です。
-        %p= link_to 'みんなの記録をみる', social_path, class: 'btn btn-default'
-      #how4.how-to
-        %p
-          = link_to 'https://github.com/daitokai/daitokaiet', target: '_blank' do
-            =image_tag 'github.png'
-        %p ほしい機能はみんなで作りましょう。
-        %p= link_to 'Github', 'https://github.com/daitokai/daitokaiet', class: 'btn btn-default'
-  - else
-    = link_to 'Twitterでログイン', user_omniauth_authorize_path(:twitter), class: 'btn btn-default'
+      - unless user_signed_in?
+        = link_to 'Twitterでログイン', user_omniauth_authorize_path(:twitter), class: 'btn btn-default'
+
+  #secondary.col-xs-12.col-sm-12.col-md-6.col-lg-7
+    #how1.how-to
+      %p.nums 1
+      %p まずは目標体重を設定してください。
+      %p= link_to '目標体重を設定する', edit_user_registration_path, class: 'btn btn-default'
+    #how2.how-to
+      %p.nums 2
+      %p 毎日、現在の体重を記録してください。
+      %p= link_to '体重を記録する', new_record_path, class: 'btn btn-default'
+    #how3.how-to
+      %p.nums 3
+      %p 体重非公開。目標との差分表示です。
+      %p= link_to 'みんなの記録をみる', social_path, class: 'btn btn-default'
+    #how4.how-to
+      %p
+        = link_to 'https://github.com/daitokai/daitokaiet', target: '_blank' do
+          =image_tag 'github.png'
+      %p ほしい機能はみんなで作りましょう。
+      %p= link_to 'Github', 'https://github.com/daitokai/daitokaiet', class: 'btn btn-default'
+
 .row
   #twitter_widget.col-xs-12.col-sm-12.col-md-12.col-lg-12
     = render 'twitter_widget', height: 400, width: 1200
