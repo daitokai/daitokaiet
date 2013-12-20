@@ -20,7 +20,11 @@ class RecordsController < ApplicationController
   def create
     @record = current_user.records.build(record_params)
     if @record.save
-      redirect_to records_url, notice: '登録しました'
+      if current_user.update_second_step!
+        redirect_to social_url, notice: '上のテキストボックスから友達を探してフォローしましょう！！'
+      else
+        redirect_to records_url, notice: '登録しました'
+      end
     else
       render action: 'new'
     end
