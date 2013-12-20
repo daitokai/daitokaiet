@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
          :omniauthable
 
   has_many :records, dependent: :destroy
+  has_many :follows, dependent: :destroy
+
   validates :goal, numericality: true
 
   scope :social_visible, -> { joins(:records).uniq }
@@ -34,6 +36,22 @@ class User < ActiveRecord::Base
       )
     end
     user
+  end
+
+  def follow_users
+    self.follows.map(&:target_user)
+  end
+
+  def follow?(target_user)
+    !self.follows.where(target_user_id: target_user.id).blank?
+  end
+
+  def follow(target_user)
+    self.follows.create(target_user_id: target_user.id)
+  end
+
+  def unfollow(target_user)
+    self.follows.find_by(target_user_id: target_user.id).destroy
   end
 
   # 通常サインアップ時のuid用、Twitter OAuth認証時のemail用にuuidな文字列を生成
