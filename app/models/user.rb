@@ -27,12 +27,12 @@ class User < ActiveRecord::Base
                          goal: nil
       )
     else
-      user.update_attributes(name: auth.info.nickname,
-                             provider: auth.provider,
-                             uid: auth.uid,
-                             token: auth.credentials.token,
-                             secret: auth.credentials.secret,
-                             image_url: data['image']
+      user.update(name: auth.info.nickname,
+                  provider: auth.provider,
+                  uid: auth.uid,
+                  token: auth.credentials.token,
+                  secret: auth.credentials.secret,
+                  image_url: data['image']
       )
     end
     user

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Users::RegistrationsController < Devise::RegistrationsController
 
   def new
@@ -14,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    current_user.update_attributes(users_params)
+    current_user.update(users_params)
     if current_user.update_first_step!
       redirect_to new_record_url, notice: '次に今日の体重を記録しましょう！！'
     else
