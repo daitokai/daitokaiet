@@ -67,7 +67,6 @@ gem 'pry-rails', group: [:development, :test]
 gem 'coveralls', require: false
 
 group :test do
-  gem 'capybara'
   gem 'launchy'
   gem 'poltergeist'
 end
