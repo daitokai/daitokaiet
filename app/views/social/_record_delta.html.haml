@@ -1,0 +1,9 @@
+:ruby
+  value = number_with_precision delta, precision: 1
+- case delta <=> 0
+- when 1
+  %span.delta.delta_plus +#{value}
+- when 0
+  %span.delta.delta_equal ±#{value}
+- when -1
+  %span.delta.delta_minus #{value}

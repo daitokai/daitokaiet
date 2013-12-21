@@ -18,7 +18,11 @@ class Record < ActiveRecord::Base
 
   def previous
     date = self.target_date
-    Record.where(user_id: user_id).where{ target_date < date }.first
+    self.user
+      .records
+      .where{ target_date < date }
+      .order(target_date: :desc)
+      .first
   end
 
   def update_twitter
