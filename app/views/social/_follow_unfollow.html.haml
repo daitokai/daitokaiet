@@ -1,7 +1,7 @@
 - unless current_user.id == user.id
   - if current_user.follow?(user)
-    = link_to unfollow_path(id: user.id), class: 'btn btn-default unfollow-link', method: :post, id: "unfollow_#{user.id}", remote: true do
+    = link_to unfollow_path(id: user.id), class: 'btn btn-primary unfollow-link', method: :post, id: "unfollow_#{user.id}", remote: true do
       %span.follow フォロー中
       %span.unfollow フォローを外す
   - else
-    = link_to 'フォローする', follow_path(id: user.id), class: 'btn btn-primary', method: :post , id: "follow_#{user.id}", remote: true
+    = link_to 'フォローする', follow_path(id: user.id), class: 'btn btn-default', method: :post , id: "follow_#{user.id}", remote: true
