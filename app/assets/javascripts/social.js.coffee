@@ -22,3 +22,5 @@ $ ->
       width: 900
       height: 600
   $('#gvChartDiv1').addClass('tab-pane')
+
+  $('#data_table').tablefix height:500, fixRows:1
