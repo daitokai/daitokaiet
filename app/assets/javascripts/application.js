@@ -14,3 +14,10 @@
 //= require bootstrap
 //= require jquery.gvChart.min
 //= require_tree .
+
+$(document).ready(function(){
+	$('#data_table').each(function(){
+		$(this).find('tr:even').addClass('tr_even');
+	});
+	$('#data_table').tablefix({ height:500, fixRows:1 });
+});
