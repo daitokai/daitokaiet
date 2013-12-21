@@ -10,7 +10,7 @@ class SocialController < ApplicationController
   end
 
   def search
-    @users = User.where.not(id: current_user.id).search(params[:q]).result
+    @users = User.where.not(id: current_user.id).search(params[:q]).result.sample(30)
   end
 
   def follow
