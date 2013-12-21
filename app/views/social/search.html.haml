@@ -7,11 +7,11 @@
   %p
     = link_to '友達を#daitokaietに誘う', "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode('一緒にソーシャルレコーディングダイエットサービス #daitokaiet やりませんか？')} #{root_url}", class: 'btn btn-primary',target: '_blank'
 - else
-  %ul.result
+  %ul.result.row
     - @users.each do |user|
-      %li
+      %li.col-xs-12.col-sm-12.col-md-6.col-lg-6
+        = user_icon user
         = link_to "social/#{user.name}" do
-          %h1
-            = user_icon user
-            = user.name
-            = render 'follow_unfollow', user: user
+          %h1= user.name
+        = render 'follow_unfollow', user: user
+        %p= "登録日:#{l user.created_at, format: '%Y-%m-%d'} 記録回数:#{user.records.size}回"

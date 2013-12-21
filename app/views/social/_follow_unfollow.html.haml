@@ -4,4 +4,4 @@
       %span.follow フォロー中
       %span.unfollow フォローを外す
   - else
-    = link_to 'フォローする', follow_path(id: user.id), class: 'btn btn-default', method: :post , id: "follow_#{user.id}", remote: true
+    = link_to 'フォローする', follow_path(id: user.id), class: 'btn btn-default follow-link', method: :post , id: "follow_#{user.id}", remote: true
