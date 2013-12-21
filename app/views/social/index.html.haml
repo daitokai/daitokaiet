@@ -9,21 +9,23 @@
 
 .tab-content
   #table.tab-pane.active
-    %table.table.social
-      %tr
-        %th
-        %th
-          = render 'icon_and_name', user: current_user
-        - current_user.follow_users.each do |user|
-          %th
-            = link_to "social/#{user.name}" do
-              = render 'icon_and_name', user: user
-      - duration.reverse_each do |date|
+    %table#data_table.table.social
+      %thead
         %tr
-          %td= l date, format: :short
-          %td= render 'to_goal', user: current_user, date: date
-          - follow_users.each do |user|
-            %td= render 'to_goal', user: user, date: date
+          %th
+          %th
+            = render 'icon_and_name', user: current_user
+          - current_user.follow_users.each do |user|
+            %th
+              = link_to "social/#{user.name}" do
+                = render 'icon_and_name', user: user
+      %tbody
+        - duration.reverse_each do |date|
+          %tr
+            %td= l date, format: :short
+            %td= render 'to_goal', user: current_user, date: date
+            - follow_users.each do |user|
+              %td= render 'to_goal', user: user, date: date
 
   #chart
     %table#chart-table
