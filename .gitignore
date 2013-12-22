@@ -1,5 +1,7 @@
 config/heroku.yml
+config/database.yml
 .powenv
+
 
 ### https://raw.github.com/github/gitignore/master/ruby.gitignore
 
