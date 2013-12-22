@@ -1,6 +1,8 @@
 language: ruby
 rvm:
 - 2.0.0
+before_script:
+  - cp config/database.yml{.sample,}
 deploy:
   provider: heroku
   api_key:
