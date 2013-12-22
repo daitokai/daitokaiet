@@ -19,7 +19,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'therubyracer', platforms: :ruby
 
 
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
@@ -47,7 +46,6 @@ gem "haml-rails"
 gem "jquery-rails"
 gem "omniauth"
 gem 'omniauth-twitter'
-gem "rspec-rails", ">= 2.0.1", group: [:development, :test]
 
 gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'simple_form', git: 'git://github.com/zlx/simple_form', branch: 'feature/integration_bootstrap3'
@@ -69,6 +67,26 @@ gem 'coveralls', require: false
 group :test do
   gem 'launchy'
   gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
 gem 'squeel'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller', platforms: [:mri_19, :mri_20, :rbx]
+  gem 'guard-rspec'
+  gem 'guard-pow'
+  gem 'guard-spring'
+  gem 'html2haml'
+  gem 'quiet_assets'
+  gem 'rb-fchange', require: false
+  gem 'rb-fsevent', require: false
+  gem 'rb-inotify', require: false
+end
+
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'spring'
+end
