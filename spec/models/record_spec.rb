@@ -38,4 +38,25 @@ describe Record do
     end
   end
 
+  before :each do
+    Twitter::REST::Client.stub(:new) { twitter_client }
+  end
+
+  describe '#recorded_tweet' do
+    before :each do
+      record.comment = comment
+    end
+
+    context 'コメントがある時' do
+      subject { record.recorded_tweet }
+      let(:comment) { 'がんばった' }
+      it { should eq '目標体重まであと10.0kg #daitokaiet がんばった | 1999-12-31' }
+    end
+
+    context 'コメントがない時' do
+      subject { record.recorded_tweet }
+      let(:comment) { nil }
+      it { should eq '目標体重まであと10.0kg #daitokaiet | 1999-12-31' }
+    end
+  end
 end
