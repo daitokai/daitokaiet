@@ -25,7 +25,7 @@ class Record < ActiveRecord::Base
       .first
   end
 
-  def next
+  def get_next
     date = self.target_date
     self.user
       .records
@@ -38,7 +38,7 @@ class Record < ActiveRecord::Base
     self.target_date = date
     self.user = user
     if prev_data = self.previous
-      if next_data = self.next
+      if next_data = self.get_next
         weight_delta = next_data.weight.to_f - prev_data.weight.to_f
         date_delta = next_data.target_date - prev_data.target_date
         self.weight = prev_data.weight.to_f + ((weight_delta.to_f / date_delta) * (self.target_date - prev_data.target_date))
