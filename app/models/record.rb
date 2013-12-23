@@ -26,8 +26,15 @@ class Record < ActiveRecord::Base
   end
 
   def update_twitter
-    self.user.twitter_client.update("目標体重まであと#{self.to_goal.round(2)}kg #daitokaiet#{" #{self.comment}" if self.comment.present?} | #{target_date.to_s}")
+    self.user.twitter_client.update recorded_tweet
   rescue
     logger.info('tweet失敗 at update_twitter')
+  end
+
+  def recorded_tweet
+    value = self.to_goal.round(2)
+    comment = "#{self.comment} " if self.comment.present?
+    footer = "#daitokaiet #{comment}| #{self.target_date}"
+    "目標体重まであと#{value}kg #{footer}"
   end
 end
