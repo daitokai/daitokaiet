@@ -11,12 +11,12 @@ class Record < ActiveRecord::Base
   end
 
   def delta
-    if prev = self.previous
+    if prev = self.previous_record
       self.weight.to_f - prev.weight.to_f
     end
   end
 
-  def previous
+  def previous_record
     previous_or_next(:previous)
   end
 
@@ -36,7 +36,7 @@ class Record < ActiveRecord::Base
   end
 
   def calc_supplement_weight
-    if prev_data = self.previous
+    if prev_data = self.previous_record
       if next_data = self.next_record
         weight_delta = next_data.weight.to_f - prev_data.weight.to_f
         date_delta = next_data.target_date - prev_data.target_date
