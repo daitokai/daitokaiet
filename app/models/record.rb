@@ -61,7 +61,13 @@ class Record < ActiveRecord::Base
   def recorded_tweet
     value = self.to_goal.round(2)
     comment = "#{self.comment} " if self.comment.present?
-    footer = "#daitokaiet #{comment}| #{self.target_date}"
+    url = show_social_url(self.user.name)
+
+    footer = "#daitokaiet #{comment}| #{self.target_date} #{url}"
     "目標体重まであと#{value}kg #{footer}"
+  end
+
+  def default_url_options(options = {})
+    { host: 'daitokaiet.herokuapp.com' }.merge(options)
   end
 end
