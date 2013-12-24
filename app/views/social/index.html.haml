@@ -38,23 +38,9 @@
         %tr
           %th= current_user.name
           - duration.each do |date|
-            - if record = current_user.records.find_by(target_date: date)
-              %td= number_with_precision record.to_goal, precision: 1
-            - else
-              - record = current_user.records.build
-              - if calc_record = record.calc_supplement_weight(date, current_user)
-                %td= number_with_precision calc_record.to_goal, precision: 1
-              - else
-                %td
+            %td= render 'to_goal_for_chart', user: current_user, date: date
           - follow_users.sample(29).each do |user|
             %tr
               %th= user.name
               - duration.each do |date|
-                - if record = user.records.find_by(target_date: date)
-                  %td= number_with_precision record.to_goal, precision: 1
-                - else
-                  - record = current_user.records.build
-                  - if calc_record = record.calc_supplement_weight(date, user)
-                    %td= number_with_precision calc_record.to_goal, precision: 1
-                  - else
-                    %td
+                %td= render 'to_goal_for_chart', user: user, date: date
