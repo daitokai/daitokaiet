@@ -19,6 +19,7 @@ class RecordsController < ApplicationController
   # POST /records
   def create
     @record = current_user.records.build(record_params)
+    @record.subscribe(@service)
     if @record.save
       if current_user.update_second_step!
         redirect_to social_url, notice: '上のテキストボックスから友達を探してフォローしましょう！！'

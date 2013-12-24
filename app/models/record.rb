@@ -1,10 +1,12 @@
 class Record < ActiveRecord::Base
+  include Wisper::Publisher
+
   belongs_to :user
 
   validates :target_date, presence: true, uniqueness: {scope: [:user_id]}
   validates :comment, length: {maximum: 100}
 
-  after_save :update_twitter
+  after_create { publish(:daitokaiet_recorded, self) }
 
   def self.liner_interpolate(start_x, start_y, end_x, end_y, x)
     delta_x = end_x - start_x
@@ -50,24 +52,5 @@ class Record < ActiveRecord::Base
       )
       self
     end
-  end
-
-  def update_twitter
-    self.user.tweet recorded_tweet
-  rescue
-    logger.info('tweet失敗 at update_twitter')
-  end
-
-  def recorded_tweet
-    value = self.to_goal.round(2)
-    comment = "#{self.comment} " if self.comment.present?
-    url = show_social_url(self.user.name)
-
-    footer = "#daitokaiet #{comment}| #{self.target_date} #{url}"
-    "目標体重まであと#{value}kg #{footer}"
-  end
-
-  def default_url_options(options = {})
-    { host: 'daitokaiet.herokuapp.com' }.merge(options)
   end
 end
