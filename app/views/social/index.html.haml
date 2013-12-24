@@ -41,7 +41,11 @@
             - if record = current_user.records.find_by(target_date: date)
               %td= number_with_precision record.to_goal, precision: 1
             - else
-              %td
+              - record = current_user.records.build
+              - if calc_record = record.calc_supplement_weight(date, current_user)
+                %td= number_with_precision calc_record.to_goal, precision: 1
+              - else
+                %td
           - follow_users.sample(29).each do |user|
             %tr
               %th= user.name
@@ -49,4 +53,8 @@
                 - if record = user.records.find_by(target_date: date)
                   %td= number_with_precision record.to_goal, precision: 1
                 - else
-                  %td
+                  - record = current_user.records.build
+                  - if calc_record = record.calc_supplement_weight(date, user)
+                    %td= number_with_precision calc_record.to_goal, precision: 1
+                  - else
+                    %td
