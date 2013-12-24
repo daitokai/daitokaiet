@@ -1,19 +1,18 @@
-# -*- coding: utf-8 -*-
 require 'spec_helper'
 
-describe "ゆるりと機能一周", js: true do
+describe 'ゆるりと機能一周', js: true do
   before :all do
     OmniAuth.config.test_mode = true
     OmniAuth.config.add_mock(:twitter, {
-        uid: '12345',
-        info: {
-          nickname: 'daitokai'
-        },
-        credentials: {
-          token: '54321',
-          secret: '12345',
-        },
-      })
+      uid: '12345',
+      info: {
+        nickname: 'daitokai'
+      },
+      credentials: {
+        token: '54321',
+        secret: '12345',
+      },
+    })
   end
 
   it do
@@ -42,15 +41,15 @@ describe "ゆるりと機能一周", js: true do
     expect(current_path).to eq(root_path)
 
     OmniAuth.config.add_mock(:twitter, {
-        uid: '54321',
-        info: {
-          nickname: 'hiroshima'
-        },
-        credentials: {
-          token: '54321',
-          secret: '12345',
-        },
-      })
+      uid: '54321',
+      info: {
+        nickname: 'hiroshima'
+      },
+      credentials: {
+        token: '54321',
+        secret: '12345',
+      },
+    })
 
     all(:link, 'Twitterでログイン').first.click
     expect(current_path).to eq(edit_user_registration_path)
@@ -68,5 +67,11 @@ describe "ゆるりと機能一周", js: true do
     click_on 'フォローする'
     click_on 'みんなの記録'
     expect(current_path).to eq(social_path)
+
+    visit(search_path(q: {name_cont: 'not_found'}))
+    expect(page).to have_content '友達がみつかりませんでした!!!!'
+
+    visit(show_social_path('not_found'))
+    expect(page).to have_content '友達がみつかりませんでした!!!!'
   end
 end
