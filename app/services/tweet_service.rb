@@ -29,14 +29,14 @@ class TweetService
   private
 
     def tweet(message)
-      if ENV.key? 'NO_TWEET'
+      if Rails.env.development? and ENV.key? 'NO_TWEET'
         Rails.logger.debug('[tweet]' + message)
       else
         twitter_client.update(message)
       end
     end
 
-    def tweet_client
+    def twitter_client
       Twitter::REST::Client.new do |config|
         config.consumer_key = ENV['TWITTER_KEY']
         config.consumer_secret = ENV['TWITTER_SECRET']

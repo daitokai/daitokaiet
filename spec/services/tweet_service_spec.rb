@@ -25,5 +25,5 @@ describe TweetService do
       let(:comment) { nil }
       it { should eq '目標体重まであと10.0kg #daitokaiet | 1999-12-31 http://daitokaiet.herokuapp.com/social/LuckOfWise' }
     end
-end
+  end
 end
