@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   validates :goal, numericality: true, unless: Proc.new { |user| user.step == 0 }
 
-  after_update :tweet_change_goal, if: Proc.new { |user| user.step > 0 }
+  after_save :tweet_change_goal, if: Proc.new { |user| user.step > 0 }
 
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
     user = User
