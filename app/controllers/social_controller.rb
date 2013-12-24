@@ -6,11 +6,13 @@ class SocialController < ApplicationController
   end
 
   def show
-    @user = User.find_by(name: params[:name])
+    @user = User.where(name: params[:name]).first
+    render 'social/not_found' if @user.blank?
   end
 
   def search
     @users = User.where.not(id: current_user.id).search(params[:q]).result.sample(30)
+    render 'social/not_found' if @users.blank?
   end
 
   def follow
