@@ -6,17 +6,23 @@ class Record < ActiveRecord::Base
 
   after_save :update_twitter
 
+  def self.liner_interpolate(start_x, start_y, end_x, end_y, x)
+    delta_x = end_x - start_x
+    delta_y = end_y - start_y
+    start_y + (delta_y.to_f / delta_x) * (x - start_x)
+  end
+
   def to_goal
     self.weight.to_f - self.user.goal.to_f
   end
 
   def delta
-    if prev = self.previous
+    if prev = self.previous_record
       self.weight.to_f - prev.weight.to_f
     end
   end
 
-  def previous
+  def previous_record
     previous_or_next(:previous)
   end
 
@@ -35,14 +41,14 @@ class Record < ActiveRecord::Base
     records.first
   end
 
-  def calc_supplement_weight
-    if prev_data = self.previous
-      if next_data = self.next_record
-        weight_delta = next_data.weight.to_f - prev_data.weight.to_f
-        date_delta = next_data.target_date - prev_data.target_date
-        self.weight = prev_data.weight.to_f + ((weight_delta.to_f / date_delta) * (self.target_date - prev_data.target_date))
-        self
-      end
+  def calc_interpolate_weight
+    if prev_data = self.previous_record and next_data = self.next_record
+      self.weight = Record.liner_interpolate(
+        prev_data.target_date, prev_data.weight,
+        next_data.target_date, next_data.weight,
+        self.target_date
+      )
+      self
     end
   end
 
