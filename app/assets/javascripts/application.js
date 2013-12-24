@@ -14,4 +14,5 @@
 //= require table.fix
 //= require bootstrap
 //= require jquery.gvChart.min
+//= require cheet
 //= require_tree .
