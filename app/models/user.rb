@@ -54,9 +54,9 @@ class User < ActiveRecord::Base
   def tweet_change_goal
     if goal_changed?
       if goal_was > goal
-        twitter_client.update("目標体重をさらに#{goal_was - goal}kg減らしました！！ #daitokaiet")
+        tweet("目標体重をさらに#{goal_was - goal}kg減らしました！！ #daitokaiet")
       else
-        twitter_client.update("目標体重を#{goal - goal_was}kg増やしちゃいました。。。 #daitokaiet")
+        tweet("目標体重を#{goal - goal_was}kg増やしちゃいました。。。 #daitokaiet")
       end
     end
   rescue
@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
     if self.step == 0
       self.step = 1
       self.save!
-      twitter_client.update('#daitokaiet をはじめました！')
+      tweet('#daitokaiet をはじめました！')
       true
     end
   end
@@ -88,6 +88,14 @@ class User < ActiveRecord::Base
   # twitterではemailを取得できないので、適当に一意のemailを生成
   def self.create_unique_email
     User.create_unique_string + '@example.com'
+  end
+
+  def tweet(message)
+    if ENV.key? 'NO_TWEET'
+      logger.debug('[tweet]' + message)
+    else
+      twitter_client.update(message)
+    end
   end
 
   def twitter_client

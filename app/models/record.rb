@@ -47,7 +47,7 @@ class Record < ActiveRecord::Base
   end
 
   def update_twitter
-    self.user.twitter_client.update recorded_tweet
+    self.user.tweet recorded_tweet
   rescue
     logger.info('tweet失敗 at update_twitter')
   end
