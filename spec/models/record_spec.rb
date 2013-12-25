@@ -4,9 +4,6 @@ describe Record do
   let(:user) { FactoryGirl.create(:user) }
   let(:weight) { 70.0 }
   let(:record) { user.records.build(target_date: Date.new(1999, 12, 31), weight: weight) }
-  before do
-    Record.skip_callback(:save, :after, :update_twitter)
-  end
 
   describe '.liner_interpolate' do
     subject { Record.liner_interpolate(start_x, start_y, end_x, end_y, x) }
@@ -47,28 +44,6 @@ describe Record do
         user.records.create(target_date: Date.new(1999, 12, 29), weight: 72.0)
       end
       it { expect(delta).to eq -2.0 }
-    end
-  end
-
-  before :each do
-    Twitter::REST::Client.stub(:new) { twitter_client }
-  end
-
-  describe '#recorded_tweet' do
-    before :each do
-      record.comment = comment
-    end
-
-    context 'コメントがある時' do
-      subject { record.recorded_tweet }
-      let(:comment) { 'がんばった' }
-      it { should eq '目標体重まであと10.0kg #daitokaiet がんばった | 1999-12-31' }
-    end
-
-    context 'コメントがない時' do
-      subject { record.recorded_tweet }
-      let(:comment) { nil }
-      it { should eq '目標体重まであと10.0kg #daitokaiet | 1999-12-31' }
     end
   end
 end

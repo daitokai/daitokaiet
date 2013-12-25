@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Wisper::Publisher
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,7 +12,7 @@ class User < ActiveRecord::Base
 
   validates :goal, numericality: true, unless: Proc.new { |user| user.step == 0 }
 
-  after_update :tweet_change_goal, if: Proc.new { |user| user.step > 0 }
+  after_save :tweet_change_goal, if: Proc.new { |user| user.step > 0 }
 
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
     user = User
@@ -54,20 +56,18 @@ class User < ActiveRecord::Base
   def tweet_change_goal
     if goal_changed?
       if goal_was > goal
-        tweet("目標体重をさらに#{goal_was - goal}kg減らしました！！ #daitokaiet")
+        publish(:daitokaiet_goal_down, goal_was - goal)
       else
-        tweet("目標体重を#{goal - goal_was}kg増やしちゃいました。。。 #daitokaiet")
+        publish(:daitokaiet_goal_up, goal - goal_was)
       end
     end
-  rescue
-    logger.info('tweet失敗 at tweet_change_goal')
   end
 
   def update_first_step!
     if self.step == 0
       self.step = 1
       self.save!
-      tweet('#daitokaiet をはじめました！')
+      publish(:daitokaiet_start)
       true
     end
   end
@@ -88,22 +88,5 @@ class User < ActiveRecord::Base
   # twitterではemailを取得できないので、適当に一意のemailを生成
   def self.create_unique_email
     User.create_unique_string + '@example.com'
-  end
-
-  def tweet(message)
-    if ENV.key? 'NO_TWEET'
-      logger.debug('[tweet]' + message)
-    else
-      twitter_client.update(message)
-    end
-  end
-
-  def twitter_client
-    Twitter::REST::Client.new do |config|
-      config.consumer_key = ENV['TWITTER_KEY']
-      config.consumer_secret = ENV['TWITTER_SECRET']
-      config.oauth_token = self.token
-      config.oauth_token_secret = self.secret
-    end
   end
 end
