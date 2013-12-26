@@ -66,9 +66,10 @@ class User < ActiveRecord::Base
   def update_first_step!
     if self.step == 0
       self.step = 1
-      self.save!
-      publish(:daitokaiet_start)
-      true
+      if self.save
+        publish(:daitokaiet_start)
+        return true
+      end
     end
   end
 
