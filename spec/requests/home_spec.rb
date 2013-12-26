@@ -64,7 +64,6 @@ describe 'ゆるりと機能一周', js: true do
     click_on 'daitokai'
     expect(current_path).to eq(show_social_path('daitokai'))
 
-    click_on 'フォローする'
     click_on 'みんなの記録'
     expect(current_path).to eq(social_path)
 
