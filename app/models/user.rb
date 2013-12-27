@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :records, dependent: :destroy
   has_many :follows, dependent: :destroy
+  has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
 
   validates :goal, numericality: true, unless: Proc.new { |user| user.step == 0 }
 

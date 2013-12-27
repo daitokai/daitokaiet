@@ -1,5 +1,8 @@
 Daitokaiet::Application.routes.draw do
-  use_doorkeeper
+  use_doorkeeper do
+    controllers :applications => 'doorkeeper/user_applications'
+  end
+
   get 'social' => 'social#index'
   get 'social/:name' => 'social#show', as: 'show_social'
   get 'search' => 'social#search', as: 'search'
