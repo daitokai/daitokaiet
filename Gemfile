@@ -56,7 +56,7 @@ gem 'newrelic_rpm'
 gem 'bugsnag'
 gem 'ransack'
 
-group :production do
+group :production, :staging do
   gem 'unicorn'
   gem 'rails_12factor'
 end
@@ -92,3 +92,4 @@ group :development, :test do
 end
 
 gem 'wisper'
+gem 'doorkeeper'

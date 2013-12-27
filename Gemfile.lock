@@ -93,6 +93,9 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.1)
+    doorkeeper (0.7.4)
+      jquery-rails (>= 2.0.2)
+      railties (>= 3.1)
     equalizer (0.0.9)
     erubis (2.7.0)
     excon (0.25.3)
@@ -340,6 +343,7 @@ DEPENDENCIES
   coveralls
   database_cleaner
   devise
+  doorkeeper
   factory_girl_rails
   guard-pow
   guard-rspec
