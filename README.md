@@ -22,4 +22,7 @@
 
 # 開発環境構築
 
-* ブログにまとめてみました。[こちら](http://d.hatena.ne.jp/mako_wis/20131220/p1)
+ブログにまとめてみました。
+
+* [MacOS Xな方はこちら](http://d.hatena.ne.jp/mako_wis/20131220/p1)
+* [CentOS 6な方はこちら](http://106n.net/toro/blog/?p=1243)
