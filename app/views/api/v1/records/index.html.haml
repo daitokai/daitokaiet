@@ -1,0 +1,19 @@
+%h1 自分の記録
+
+%table.table
+  %tr
+    %th 日付
+    %th 体重
+    %th 目標まで
+    %th
+    %th
+
+  - @records.each do |record|
+    %tr
+      %td=l record.target_date
+      %td= number_with_precision record.weight, precision: 1
+      %td= "あと#{number_with_precision record.to_goal, precision: 1}kg"
+      %td= link_to '編集', edit_api_v1_record_path(record, access_token: params[:access_token])
+      %td= link_to '削除', api_v1_record_path(record, access_token: params[:access_token]), method: :delete, data: { confirm: '削除します。まじでいいのか?' }
+
+= link_to '体重を記録する', new_api_v1_record_path(access_token: params[:access_token]), class: 'btn btn-default'

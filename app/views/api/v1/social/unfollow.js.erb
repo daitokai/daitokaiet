@@ -1,0 +1,2 @@
+$("#unfollow_<%= @user.id %>").after("<%= j render 'follow_unfollow', user: @user %>");
+$("#unfollow_<%= @user.id %>").remove();

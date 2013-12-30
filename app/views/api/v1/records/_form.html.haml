@@ -1,0 +1,10 @@
+= simple_form_for [:api, :v1, @record] do |f|
+  = f.error_notification
+  .form-inputs
+    = hidden_field_tag :access_token, params[:access_token]
+    = f.input :target_date, label: '日付', end_year: Date.today.year
+    = f.input :weight, label: '体重', input_html: {step:'0.1'}
+    = f.input :comment, label: 'コメント(つぶやきます)'
+  .form-actions
+    = link_to '戻る', api_v1_records_path(access_token: params[:access_token]), class: 'btn btn-default'
+    = f.button :submit, '体重を記録する', class: 'btn btn-primary'

@@ -58,6 +58,8 @@ ul.result
         margin-bottom: 0
         display: inline-block
         max-width: 240px
+      h2.right
+        float: right
       .user-icon
         margin-top: 4px
         float: left
@@ -68,3 +70,19 @@ ul.result
         margin-top: -14px
         padding-left: 52px
         margin-bottom: 0
+
+@media (max-width: 480px)
+  ul.result
+    li
+      .card
+        padding: 8px 8px 8px 8px
+        h1
+          padding-bottom: 20px
+        h2
+          display: inline-block
+        .follow-link, .unfollow-link
+          display: inline-block
+          width: 100%
+          margin-top: 10px
+        p
+          margin-top: -20px
