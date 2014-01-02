@@ -1,4 +1,5 @@
-%h2 目標体重設定
+= content_for :header do
+  目標体重設定
 = simple_form_for([:api, :v1, current_user], url: api_v1_users_path, html: { method: :put }) do |f|
   = f.error_notification
   .form-inputs

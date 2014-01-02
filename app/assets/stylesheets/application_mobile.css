@@ -9,9 +9,9 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require bootstrap
- *= require bootstrap_and_overrides
  *= require home
  *= require records
- *= require social
+ *= require social_mobile
+ *= require jquery.mobile
+ *= require jqm-datebox
  */

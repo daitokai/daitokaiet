@@ -93,3 +93,4 @@ end
 
 gem 'wisper'
 gem 'doorkeeper'
+gem 'jquery_mobile_rails'

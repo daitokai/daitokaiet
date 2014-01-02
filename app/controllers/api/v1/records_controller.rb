@@ -11,7 +11,7 @@ module Api::V1
 
     # GET /api/v1records/new
     def new
-      @record = current_user.records.build
+      @record = current_user.records.build(target_date: Date.today)
     end
 
     # GET /api/v1/records/1/edit

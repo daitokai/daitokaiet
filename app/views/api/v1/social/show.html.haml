@@ -1,24 +1,31 @@
-%h1
+= content_for :header do
+  みんなの記録
+
+%h1.social
   = user_icon @user
   = @user.name
   = render 'follow_unfollow', user: @user
 
-.row
-  .col-md-8
-    %table.table.social
-      - (Date.today - 30.days..Date.today).reverse_each do |date|
-        %tr
-          %td= l date, format: :short
-          - if record = @user.records.find_by(target_date: date)
-            %td= number_with_precision record.to_goal, precision: 1
-            %td= record.comment
-          - else
-            %td
-              - if date == Date.today
-                = link_to '煽る', "https://twitter.com/intent/tweet?text=@#{@user.name} #{ERB::Util.url_encode('進捗どうですか？ #daitokaiet')} #{new_record_url}", target: '_blank'
-            %td
-  .col-md-4.record
-    %h3 登録日時
-    %p= l @user.created_at
-    %h3 記録回数
-    %p= "#{@user.records.size}回"
+%table{data: {role: :table, mode: :columntoggle}}
+  %thead
+    %tr
+      %th 日付
+      %th 目標まで
+      %th コメント
+  %tbody
+    - (Date.today - 30.days..Date.today).reverse_each do |date|
+      %tr
+        %td= l date, format: :short
+        - if record = @user.records.find_by(target_date: date)
+          %td= number_with_precision record.to_goal, precision: 1
+          %td= record.comment
+        - else
+          %td
+            - if date == Date.today
+              = link_to '煽る', "https://twitter.com/intent/tweet?text=@#{@user.name} #{ERB::Util.url_encode('進捗どうですか？ #daitokaiet')} #{new_record_url}", target: '_blank'
+          %td
+
+%h3 登録日時
+%p= l @user.created_at
+%h3 記録回数
+%p= "#{@user.records.size}回"
