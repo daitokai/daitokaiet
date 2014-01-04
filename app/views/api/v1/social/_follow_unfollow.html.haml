@@ -1,0 +1,7 @@
+- unless current_user.id == user.id
+  - if current_user.follow?(user)
+    = link_to api_v1_unfollow_path(id: user.id, access_token: params[:access_token]), class: 'ui-btn unfollow-link', method: :post, id: "unfollow_#{user.id}", remote: true do
+      %span.follow フォロー中
+      %span.unfollow フォローを外す
+  - else
+    = link_to 'フォローする', api_v1_follow_path(id: user.id, access_token: params[:access_token]), class: 'ui-btn follow-link', method: :post , id: "follow_#{user.id}", remote: true

@@ -1,6 +1,6 @@
 - if record = user.records.find_by(target_date: date)
   - if current_user == user
-    = link_to edit_record_url(record) do
+    = link_to edit_api_v1_record_url(record, access_token: params[:access_token]) do
       = number_with_precision record.to_goal, precision: 1
   - else
     = number_with_precision record.to_goal, precision: 1
@@ -8,6 +8,6 @@
 - else
   - if date == Date.today
     - if current_user == user
-      = link_to '登録', new_record_url(date: date)
+      = link_to '登録', new_api_v1_record_url(date: date, access_token: params[:access_token])
     - else
       = link_to '煽る', "https://twitter.com/intent/tweet?text=@#{user.name} #{ERB::Util.url_encode('進捗どうですか？ #daitokaiet')} #{new_record_url}", target: '_blank'

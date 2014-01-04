@@ -19,6 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if current_user.update_first_step!
       redirect_to new_record_url, notice: '次に今日の体重を記録しましょう！！'
     else
+      flash.now[:notice] = '更新しました。'
       render :edit
     end
   end

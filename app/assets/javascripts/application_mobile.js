@@ -11,10 +11,11 @@
 // about supported directives.
 //= require jquery
 //= require jquery_ujs
+//= require jquery.mobile
+//= require jqm-datebox.core
+//= require jqm-datebox.mode.datebox
+//= require jquery.mobile.datebox.i18n.ja.utf8
 //= require table.fix
-//= require bootstrap
-//= require jquery.gvChart.min
 //= require cheet
 //= require records
 //= require registrations
-//= require social

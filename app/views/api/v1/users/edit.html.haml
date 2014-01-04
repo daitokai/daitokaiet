@@ -1,0 +1,9 @@
+= content_for :header do
+  目標体重設定
+= simple_form_for([:api, :v1, current_user], url: api_v1_users_path, html: { method: :put }) do |f|
+  = f.error_notification
+  .form-inputs
+    = hidden_field_tag :access_token, params[:access_token]
+    = f.input :goal, required: true, label: '目標体重', input_html: {step:'0.1'}
+  .form-actions
+    = f.button :submit, '目標体重を変更する', class: 'btn btn-primary'

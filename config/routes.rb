@@ -1,4 +1,8 @@
 Daitokaiet::Application.routes.draw do
+  use_doorkeeper do
+    controllers :applications => 'doorkeeper/user_applications'
+  end
+
   get 'social' => 'social#index'
   get 'social/:name' => 'social#show', as: 'show_social'
   get 'search' => 'social#search', as: 'search'
@@ -13,6 +17,19 @@ Daitokaiet::Application.routes.draw do
     :omniauth_callbacks => "users/omniauth_callbacks",
     :sessions => 'users/sessions'
   }
+
+  namespace :api do
+    namespace :v1 do
+      resources :records, except: [:show]
+      resource :users, only: [:show, :edit, :update]
+      get 'social' => 'social#index'
+      get 'social/:name' => 'social#show', as: 'show_social'
+      get 'search' => 'social#search', as: 'search'
+      post 'social/:id/follow' => 'social#follow', as: 'follow'
+      post 'social/:id/unfollow' => 'social#unfollow', as: 'unfollow'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

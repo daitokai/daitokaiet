@@ -1,0 +1,10 @@
+%h3 #daitokaiet
+%ul{data: {role: :listview}}
+  %li
+    = link_to '記録する', new_api_v1_record_path(access_token: params[:access_token])
+  %li
+    = link_to '自分の記録', api_v1_records_path(access_token: params[:access_token])
+  %li
+    = link_to 'みんなの記録', api_v1_social_path(access_token: params[:access_token])
+  %li
+    = link_to '目標設定', edit_api_v1_users_path(access_token: params[:access_token])

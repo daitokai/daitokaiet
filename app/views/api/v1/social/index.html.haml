@@ -1,0 +1,21 @@
+= content_for :header do
+  みんなの記録
+
+- if current_user.follow_users.blank?
+  %h1 誰もフォローしてません。
+  %p
+    右上の検索ボタンを押して友達を見つけましょう！
+    %br
+    是非お誘い合わせの上煽り合ってください！！
+
+- else
+  %ul.social
+    - current_user.follow_users.each do |user|
+      %li
+        .card.ui-body.ui-body-a.ui-corner-all
+          = user_icon user
+          = link_to api_v1_show_social_path(name: user.name, access_token: params[:access_token]) do
+            %h1= user.name
+          %p= "登録日:#{l user.created_at, format: '%Y-%m-%d'} 記録回数:#{user.records.size}回"
+          %h2.right= render 'to_goal', user: user, date: Date.today
+          %h2= l Date.today, format: :short
