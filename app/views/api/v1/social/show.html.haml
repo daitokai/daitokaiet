@@ -9,8 +9,8 @@
 %table{data: {role: :table, mode: :columntoggle}}
   %thead
     %tr
-      %th 日付
-      %th 目標まで
+      %th.target-date 日付
+      %th.to-goal 目標
       %th コメント
   %tbody
     - (Date.today - 30.days..Date.today).reverse_each do |date|
