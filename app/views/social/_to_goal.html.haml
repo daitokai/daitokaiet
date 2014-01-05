@@ -1,9 +1,9 @@
 - if record = user.records.find_by(target_date: date)
   - if current_user == user
     = link_to edit_record_url(record) do
-      = number_with_precision record.to_goal, precision: 1
+      = number_with_precision record.to_goal, precision: 2
   - else
-    = number_with_precision record.to_goal, precision: 1
+    = number_with_precision record.to_goal, precision: 2
   = render 'social/record_delta', delta: record.delta
 - else
   - if date == Date.today
