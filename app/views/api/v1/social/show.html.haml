@@ -17,7 +17,7 @@
       %tr
         %td= l date, format: :short
         - if record = @user.records.find_by(target_date: date)
-          %td= number_with_precision record.to_goal, precision: 1
+          %td= show_weight record.to_goal
           %td= record.comment
         - else
           %td

@@ -1,2 +1,2 @@
 - if record = user.records.find_by(target_date: date).presence || user.records.build(target_date: date).calc_interpolate_weight
-  = number_with_precision record.to_goal, precision: 2
+  = show_weight record.to_goal
