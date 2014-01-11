@@ -19,13 +19,15 @@
             %th
               = link_to "social/#{user.name}" do
                 = render 'icon_and_name', user: user
+          %th
       %tbody
         - duration.reverse_each do |date|
           %tr
-            %td= l date, format: :short
-            %td= render 'to_goal', user: current_user, date: date
+            %td.date= l date, format: :short
+            %td.value= render 'to_goal', user: current_user, date: date
             - follow_users.each do |user|
               %td= render 'to_goal', user: user, date: date
+            %td.space
 
   #chart
     %table#chart-table

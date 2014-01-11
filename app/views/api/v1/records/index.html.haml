@@ -12,6 +12,6 @@
     - @records.each do |record|
       %tr
         %td=l record.target_date
-        %td= number_with_precision record.weight, precision: 1
+        %td= show_weight record.weight
         %td= link_to '編集', edit_api_v1_record_path(record, access_token: params[:access_token]), class: 'ui-btn ui-icon-edit ui-btn-icon-notext ui-corner-all nomargin'
         %td= link_to '削除', api_v1_record_path(record, access_token: params[:access_token]), method: :delete, class: 'ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all nomargin'
