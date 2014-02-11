@@ -5,5 +5,5 @@
     = f.input :weight, label: '体重', input_html: {step:'0.1'}
     = f.input :comment, label: 'コメント(つぶやきます)'
   .form-actions
-    = link_to '戻る', records_path, class: 'btn btn-default'
+    = link_to '自分の記録を見る', records_path, class: 'btn btn-default'
     = f.button :submit, '体重を記録する', class: 'btn btn-primary'

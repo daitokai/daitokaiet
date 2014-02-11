@@ -33,7 +33,7 @@ describe 'ゆるりと機能一周', js: true do
     expect(current_path).to eq(social_path)
 
     click_on '記録する'
-    click_on '戻る'
+    click_on '自分の記録を見る'
     click_on '編集'
     click_on '体重を記録する'
 
