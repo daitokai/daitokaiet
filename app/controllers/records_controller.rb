@@ -1,15 +1,16 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_record, only: [:edit, :update, :destroy]
+  before_action :set_records, only: [:index]
+  before_action :set_recent_records, only: [:new, :create]
 
   # GET /records
   def index
-    @records = current_user.records.order(target_date: :desc)
   end
 
   # GET /records/new
   def new
-    @record = current_user.records.build
+    @record = @records.build
   end
 
   # GET /records/1/edit
@@ -18,7 +19,7 @@ class RecordsController < ApplicationController
 
   # POST /records
   def create
-    @record = current_user.records.build(record_params)
+    @record = @records.build(record_params)
     @record.subscribe(@service)
     if @record.save
       if current_user.update_second_step!
@@ -48,6 +49,14 @@ class RecordsController < ApplicationController
 
   private
   # Use callbacks to share common setup or constraints between actions.
+  def set_records
+    @records = current_user.records.order(target_date: :desc)
+  end
+
+  def set_recent_records
+    @records = set_records.limit(5)
+  end
+
   def set_record
     @record = current_user.records.find(params[:id])
   end
