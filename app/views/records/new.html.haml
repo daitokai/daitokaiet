@@ -1,3 +1,19 @@
-%h1 記録する
+.row
+  %h1 記録する
+  = render 'form'
 
-= render 'form'
+.row
+  %h1 最近の記録
+  %table.table
+    %tr
+      %th 日付
+      %th 体重
+      %th コメント
+      %th 目標まで
+
+    - @records.each do |record|
+      %tr
+        %td=l record.target_date
+        %td= show_weight record.weight
+        %td= record.comment
+        %td= "あと#{show_weight record.to_goal}kg"
