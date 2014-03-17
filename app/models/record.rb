@@ -4,6 +4,7 @@ class Record < ActiveRecord::Base
   belongs_to :user
 
   validates :target_date, presence: true, uniqueness: {scope: [:user_id]}
+  validates :weight, presence: true, numericality: {greater_than: 0}
   validates :comment, length: {maximum: 100}
 
   after_create { publish(:daitokaiet_recorded, self) }

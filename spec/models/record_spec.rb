@@ -8,14 +8,35 @@ describe Record do
   describe '.liner_interpolate' do
     subject { Record.liner_interpolate(start_x, start_y, end_x, end_y, x) }
     describe 'start: (2013-12-15,10) end: (2013-12-19,11), x: 2013-12-17' do
-      let(:start_x) { Date.new(2013,12,15) }
+      let(:start_x) { Date.new(2013, 12, 15) }
       let(:start_y) { 10 }
-      let(:end_x) { Date.new(2013,12,19) }
+      let(:end_x) { Date.new(2013, 12, 19) }
       let(:end_y) { 11 }
-      let(:x) { Date.new(2013,12,17) }
+      let(:x) { Date.new(2013, 12, 17) }
       it { should eq(10.5) }
     end
   end
+
+  describe 'validates' do
+    subject { record.valid? }
+    context 'when weight is nil' do
+      let(:weight) { nil }
+      it { expect(subject).to eq(false) }
+    end
+    context 'when weight is 0' do
+      let(:weight) { 0 }
+      it { expect(subject).to eq(false) }
+    end
+    context 'when weight is 57,0' do
+      let(:weight) { '57,0' }
+      it { expect(subject).to eq(false) }
+    end
+    context 'when weight is 57' do
+      let(:weight) { '57.0' }
+      it { expect(subject).to eq(true) }
+    end
+  end
+
 
   describe '#to_goal' do
     subject { record.to_goal }
