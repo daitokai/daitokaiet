@@ -51,7 +51,7 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'simple_form', git: 'git://github.com/zlx/simple_form', branch: 'feature/integration_bootstrap3'
 gem 'heroku_san', git: 'git://github.com/jphenow/heroku_san', branch: 'bug/wrong-ruby-version-loaded'
 
-gem 'twitter'
+gem 'twitter', '~> 5.0'
 gem 'newrelic_rpm'
 gem 'bugsnag'
 gem 'ransack'
