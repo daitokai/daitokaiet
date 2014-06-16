@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Record do
+describe Record, type: :model do
   let(:user) { FactoryGirl.create(:user) }
   let(:weight) { 70.0 }
   let(:record) { user.records.build(target_date: Date.new(1999, 12, 31), weight: weight) }
@@ -13,7 +13,7 @@ describe Record do
       let(:end_x) { Date.new(2013, 12, 19) }
       let(:end_y) { 11 }
       let(:x) { Date.new(2013, 12, 17) }
-      it { should eq(10.5) }
+      it { is_expected.to eq(10.5) }
     end
   end
 

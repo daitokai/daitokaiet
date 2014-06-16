@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'ゆるりと機能一周', js: true do
+describe 'ゆるりと機能一周', type: :feature, js: true do
   before :all do
     OmniAuth.config.test_mode = true
     OmniAuth.config.add_mock(:twitter, {
@@ -20,7 +20,7 @@ describe 'ゆるりと機能一周', js: true do
     allow(Twitter::REST::Client).to receive(:new) { twitter_client }
 
     visit root_path
-    all(:link, 'Twitterでログイン').first.click
+    page.all(:link, 'Twitterでログイン').first.click
     expect(current_path).to eq(edit_user_registration_path)
 
     fill_in '目標体重', with: 60
@@ -51,7 +51,7 @@ describe 'ゆるりと機能一周', js: true do
       },
     })
 
-    all(:link, 'Twitterでログイン').first.click
+    page.all(:link, 'Twitterでログイン').first.click
     expect(current_path).to eq(edit_user_registration_path)
 
     keypress_script = "$('#user_search').submit();"

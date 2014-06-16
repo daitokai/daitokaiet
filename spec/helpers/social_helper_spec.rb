@@ -10,6 +10,6 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe SocialHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe SocialHelper, type: :helper do
+  skip "add some examples to (or delete) #{__FILE__}"
 end
