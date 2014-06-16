@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Follow do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Follow, type: :model do
+  skip "add some examples to (or delete) #{__FILE__}"
 end

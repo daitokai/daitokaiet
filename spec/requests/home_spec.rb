@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'ゆるりと機能一周', js: true do
+describe 'ゆるりと機能一周', type: :request, js: true do
   before :all do
     OmniAuth.config.test_mode = true
     OmniAuth.config.add_mock(:twitter, {

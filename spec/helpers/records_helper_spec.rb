@@ -10,6 +10,6 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe RecordsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe RecordsHelper, type: :helper do
+  skip "add some examples to (or delete) #{__FILE__}"
 end
