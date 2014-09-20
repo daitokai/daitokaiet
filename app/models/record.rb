@@ -16,7 +16,7 @@ class Record < ActiveRecord::Base
   end
 
   def to_goal
-    self.weight.to_f - self.user.goal.to_f
+    (self.weight.to_f - self.user.goal.to_f).abs
   end
 
   def delta
