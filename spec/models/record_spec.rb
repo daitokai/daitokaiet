@@ -41,11 +41,11 @@ describe Record, type: :model do
   describe '#to_goal' do
     subject { record.to_goal }
     context 'goal:60/weight:70' do
-      it { expect(subject).to eq(70.0 - 60.0) }
+      it { expect(subject).to eq((70.0 - 60.0).abs) }
     end
     context 'goal:60/weight:57.44' do
       let(:weight) { 57.44 }
-      it { expect(subject).to eq(57.44 - 60.0) }
+      it { expect(subject).to eq((57.44 - 60.0).abs) }
     end
   end
 
