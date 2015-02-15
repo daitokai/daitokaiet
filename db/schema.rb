@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(version: 20131227120348) do
     t.string   "comment"
   end
 
+  create_table "user_applications", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "application_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_applications", ["application_id"], name: "index_user_applications_on_application_id", using: :btree
+  add_index "user_applications", ["user_id"], name: "index_user_applications_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",   null: false
     t.string   "encrypted_password",     default: "",   null: false

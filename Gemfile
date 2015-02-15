@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.9'
+gem 'rails', '4.1.9'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
@@ -48,7 +48,7 @@ gem "omniauth"
 gem 'omniauth-twitter'
 
 gem 'bootstrap-sass', '~> 3.0.3.0'
-gem 'simple_form', git: 'git://github.com/zlx/simple_form', branch: 'feature/integration_bootstrap3'
+gem 'simple_form'
 gem 'heroku_san', git: 'git://github.com/jphenow/heroku_san', branch: 'bug/wrong-ruby-version-loaded'
 
 gem 'twitter', '~> 5.0'
