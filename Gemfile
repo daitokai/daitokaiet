@@ -1,68 +1,30 @@
 source 'https://rubygems.org'
-ruby '2.2.0'
+ruby '2.2.2'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.9'
-
-# Use sqlite3 as the database for Active Record
+gem 'rails', '4.2.1'
 gem 'pg'
-
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-
-# Use Uglifier as compressor for JavaScript assets
+gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
-
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
-
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
-gem "capybara", group: [:development, :test]
-gem "devise"
-gem "haml", ">= 3.0.0"
-gem "haml-rails"
-gem "jquery-rails"
-gem "omniauth"
+gem 'devise'
+gem 'haml', '>= 3.0.0'
+gem 'haml-rails'
+gem 'jquery-rails'
+gem 'omniauth'
 gem 'omniauth-twitter'
-
-gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'bootstrap-sass'
 gem 'simple_form'
-gem 'heroku_san', git: 'git://github.com/jphenow/heroku_san', branch: 'bug/wrong-ruby-version-loaded'
-
 gem 'twitter', '~> 5.0'
 gem 'newrelic_rpm'
 gem 'bugsnag'
-gem 'ransack'
-
-group :production, :staging do
-  gem 'unicorn'
-  gem 'rails_12factor'
-end
-
-gem 'pry-rails', group: [:development, :test]
+gem 'wisper'
+gem 'doorkeeper'
+gem 'jquery_mobile_rails'
 gem 'coveralls', require: false
+
+gem 'ransack', github: 'activerecord-hackery/ransack'
 
 group :test do
   gem 'launchy'
@@ -70,28 +32,30 @@ group :test do
   gem 'database_cleaner'
 end
 
-gem 'squeel'
-
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', platforms: [:mri_19, :mri_20, :rbx]
   gem 'guard-rspec'
   gem 'guard-pow'
-  gem 'guard-spring'
   gem 'html2haml'
   gem 'quiet_assets'
   gem 'rb-fchange', require: false
   gem 'rb-fsevent', require: false
   gem 'rb-inotify', require: false
+  gem 'heroku_san', git: 'git://github.com/jphenow/heroku_san', branch: 'bug/wrong-ruby-version-loaded'
+  gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do
+  gem 'pry-rails'
+  gem 'capybara'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'spring'
-  gem "spring-commands-rspec"
+  gem 'spring-commands-rspec'
 end
 
-gem 'wisper'
-gem 'doorkeeper'
-gem 'jquery_mobile_rails'
+group :production, :staging do
+  gem 'unicorn'
+  gem 'rails_12factor'
+end

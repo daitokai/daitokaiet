@@ -3,9 +3,9 @@ class Record < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :target_date, presence: true, uniqueness: {scope: [:user_id]}
-  validates :weight, presence: true, numericality: {greater_than: 0}
-  validates :comment, length: {maximum: 100}
+  validates :target_date, presence: true, uniqueness: { scope: [:user_id] }
+  validates :weight, presence: true, numericality: { greater_than: 0 }
+  validates :comment, length: { maximum: 100 }
 
   after_create { publish(:daitokaiet_recorded, self) }
 
@@ -37,9 +37,9 @@ class Record < ActiveRecord::Base
     date = self.target_date
     records = self.user.records
     if type == :previous
-      records = records.where { target_date < date }.order(target_date: :desc)
+      records = records.where('target_date < ?', date).order(target_date: :desc)
     else
-      records = records.where { target_date > date }.order(target_date: :asc)
+      records = records.where('target_date > ?', date).order(target_date: :asc)
     end
     records.first
   end

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20131227120348) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "follows", force: true do |t|
+  create_table "follows", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "target_user_id"
     t.datetime "created_at"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20131227120348) do
   add_index "follows", ["target_user_id"], name: "index_follows_on_target_user_id", using: :btree
   add_index "follows", ["user_id"], name: "index_follows_on_user_id", using: :btree
 
-  create_table "oauth_access_grants", force: true do |t|
+  create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id",              null: false
     t.integer  "application_id",                 null: false
     t.string   "token",                          null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20131227120348) do
 
   add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
 
-  create_table "oauth_access_tokens", force: true do |t|
+  create_table "oauth_access_tokens", force: :cascade do |t|
     t.integer  "resource_owner_id"
     t.integer  "application_id",    null: false
     t.string   "token",             null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20131227120348) do
   add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", using: :btree
   add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
 
-  create_table "oauth_applications", force: true do |t|
+  create_table "oauth_applications", force: :cascade do |t|
     t.string   "name",                      null: false
     t.string   "uid",                       null: false
     t.string   "secret",                    null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20131227120348) do
   add_index "oauth_applications", ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type", using: :btree
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
-  create_table "records", force: true do |t|
+  create_table "records", force: :cascade do |t|
     t.integer  "user_id"
     t.date     "target_date"
     t.decimal  "weight"
@@ -77,17 +77,7 @@ ActiveRecord::Schema.define(version: 20131227120348) do
     t.string   "comment"
   end
 
-  create_table "user_applications", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "application_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_applications", ["application_id"], name: "index_user_applications_on_application_id", using: :btree
-  add_index "user_applications", ["user_id"], name: "index_user_applications_on_user_id", using: :btree
-
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",   null: false
     t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"

@@ -54,10 +54,7 @@ describe 'ゆるりと機能一周', type: :feature, js: true do
     page.all(:link, 'Twitterでログイン').first.click
     expect(current_path).to eq(edit_user_registration_path)
 
-    keypress_script = "$('#user_search').submit();"
-    page.driver.browser.execute_script(keypress_script)
-    sleep(1)
-    expect(current_path).to eq(search_path)
+    visit(search_path(q: {name_cont: ''}))
 
     click_on 'フォローする'
     click_on 'フォロー中'

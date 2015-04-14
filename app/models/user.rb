@@ -16,23 +16,20 @@ class User < ActiveRecord::Base
   after_save :tweet_change_goal, if: Proc.new { |user| user.step > 0 }
 
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
-    user = User
-      .where(provider: auth.provider, uid: auth.uid)
-      .first_or_initialize
+    user = User.where(provider: auth.provider,
+                      uid: auth.uid).first_or_initialize
 
     data = auth['info']
     attributes = {
       name: auth.info.nickname,
-      token:  auth.credentials.token,
+      token: auth.credentials.token,
       secret: auth.credentials.secret,
       image_url: data['image'],
     }
     if user.new_record?
       attributes.merge!(email: User.create_unique_email,
                         password: Devise.friendly_token[0, 20],
-                        goal: nil,
-
-      )
+                        goal: nil)
     end
     user.update! attributes
     user
