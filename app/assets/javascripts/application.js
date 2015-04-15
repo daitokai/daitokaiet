@@ -12,7 +12,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require table.fix
-//= require bootstrap
+//= require bootstrap-sass
 //= require jquery.gvChart.min
 //= require cheet
 //= require records

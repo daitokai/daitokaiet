@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.2.2'
 
+gem 'bundler', '>= 1.8.4'
+
 gem 'rails', '4.2.1'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
@@ -14,7 +16,6 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-twitter'
-gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'twitter', '~> 5.0'
 gem 'newrelic_rpm'
@@ -23,8 +24,11 @@ gem 'wisper'
 gem 'doorkeeper'
 gem 'jquery_mobile_rails'
 gem 'coveralls', require: false
-
 gem 'ransack', github: 'activerecord-hackery/ransack'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap-sass'
+end
 
 group :test do
   gem 'launchy'
