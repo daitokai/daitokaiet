@@ -1,6 +1,6 @@
 module Api::V1
   class RecordsController < Api::ApplicationController
-    before_action doorkeeper_authorize!
+    before_action :doorkeeper_authorize!
     before_action :set_record, only: [:edit, :update, :destroy]
 
     # GET /api/v1/records

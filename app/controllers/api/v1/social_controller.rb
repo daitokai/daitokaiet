@@ -1,6 +1,6 @@
 module Api::V1
   class SocialController < Api::ApplicationController
-    before_action doorkeeper_authorize!
+    before_action :doorkeeper_authorize!
     before_action :set_user, only: [:follow, :unfollow]
 
     def index
