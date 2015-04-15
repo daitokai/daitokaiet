@@ -1,6 +1,6 @@
 module Api::V1
   class UsersController < Api::ApplicationController
-    doorkeeper_for :all
+    before_action doorkeeper_authorize!
 
     def show
     end
